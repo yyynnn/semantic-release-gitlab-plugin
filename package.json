@@ -19,8 +19,7 @@
     "index.js"
   ],
   "scripts": {
-    "clean": "rimraf lib dist es",
-    "prepare": "npm run clean && npm run build",
+    "prepare": "npm run build",
     "build": "echo build",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"

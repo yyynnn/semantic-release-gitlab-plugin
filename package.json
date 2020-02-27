@@ -15,8 +15,7 @@
   "files": [
     "lib",
     "es",
-    "src",
-    "dist"
+    "src"
   ],
   "scripts": {
     "clean": "rimraf lib dist es",

@@ -19,4 +19,4 @@ async function publish(pluginConfig, context) {
   return publishGitLab(pluginConfig, context);
 }
 
-export default { verifyConditions, publish };
+module.exports = { verifyConditions, publish };

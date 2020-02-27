@@ -1,21 +1,89 @@
 {
-  "name": "@semantic-release/gitlab",
-  "description": "semantic-release plugin to publish a GitLab release",
-  "version": "0.0.0-development",
-  "author": "Pierre Vanduynslager (https://twitter.com/@pvdlg_)",
-  "ava": {
-    "files": [
-      "test/**/*.test.js"
+  "name": "semantic-release-gitlab-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "semantic-release-gitlab-plugin",
+  "repository": "github:yyynnn/semantic-release-gitlab-plugin",
+  "keywords": [
+    "semantic-release",
+    "gitlab",
+    "plugin"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf lib dist es",
+    "prepare": "npm run clean && npm run build",
+    "build": "npm run build:commonjs && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "echo PRE PUSH"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
     ]
   },
-  "bugs": {
-    "url": "https://github.com/semantic-release/gitlab/issues"
+  "prettier": {
+    "arrowParens": "always",
+    "proseWrap": "always",
+    "singleQuote": true,
+    "trailingComma": "all"
   },
-  "contributors": [
-    "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
-    "Gregor Martynus (https://twitter.com/gr2m)"
-  ],
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.15.1",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.5",
+    "mocha": "^6.2.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.2",
+    "ava": "^3.1.0",
+    "clear-module": "^4.0.0",
+    "codecov": "^3.0.0",
+    "nock": "^12.0.0",
+    "nyc": "^15.0.0",
+    "semantic-release": "^17.0.0",
+    "sinon": "^9.0.0",
+    "tempy": "^0.4.0",
+    "xo": "^0.27.0"
+  },
   "dependencies": {
+    "@babel/runtime": "^7.6.2",
     "@semantic-release/error": "^2.2.0",
     "aggregate-error": "^3.0.0",
     "debug": "^4.0.0",
@@ -28,71 +96,5 @@
     "lodash": "^4.17.11",
     "parse-path": "^4.0.0",
     "url-join": "^4.0.0"
-  },
-  "devDependencies": {
-    "ava": "^3.1.0",
-    "clear-module": "^4.0.0",
-    "codecov": "^3.0.0",
-    "nock": "^12.0.0",
-    "nyc": "^15.0.0",
-    "semantic-release": "^17.0.0",
-    "sinon": "^9.0.0",
-    "tempy": "^0.4.0",
-    "xo": "^0.27.0"
-  },
-  "engines": {
-    "node": ">=10.18"
-  },
-  "files": [
-    "lib",
-    "index.js"
-  ],
-  "homepage": "https://github.com/semantic-release/gitlab#readme",
-  "keywords": [
-    "git",
-    "gitlab",
-    "publish",
-    "release",
-    "semantic-release",
-    "version"
-  ],
-  "license": "MIT",
-  "main": "index.js",
-  "nyc": {
-    "include": [
-      "lib/**/*.js",
-      "index.js"
-    ],
-    "reporter": [
-      "json",
-      "text",
-      "html"
-    ],
-    "all": true
-  },
-  "peerDependencies": {
-    "semantic-release": ">=15.8.0 <18.0.0"
-  },
-  "prettier": {
-    "printWidth": 120,
-    "trailingComma": "es5"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/semantic-release/gitlab.git"
-  },
-  "scripts": {
-    "codecov": "codecov -f coverage/coverage-final.json",
-    "lint": "xo",
-    "pretest": "npm run lint",
-    "semantic-release": "semantic-release",
-    "test": "nyc ava -v"
-  },
-  "xo": {
-    "prettier": true,
-    "space": true
   }
 }

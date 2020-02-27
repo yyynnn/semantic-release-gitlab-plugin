@@ -1,7 +1,7 @@
 /* eslint require-atomic-updates: off */
 
-const verifyGitLab = require('./lib/verify');
-const publishGitLab = require('./lib/publish');
+import { verifyGitLab } from './lib/verify';
+import { publishGitLab } from './lib/publish';
 
 let verified;
 
@@ -19,4 +19,4 @@ async function publish(pluginConfig, context) {
   return publishGitLab(pluginConfig, context);
 }
 
-module.exports = {verifyConditions, publish};
+export default { verifyConditions, publish };

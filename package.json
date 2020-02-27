@@ -1,6 +1,6 @@
 {
   "name": "semantic-release-gitlab-plugin",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "description": "semantic-release-gitlab-plugin",
   "repository": "github:yyynnn/semantic-release-gitlab-plugin",
@@ -16,13 +16,13 @@
   "types": "index.d.ts",
   "files": [
     "lib",
+    "src",
     "index.js"
   ],
   "scripts": {
     "prepare": "npm run build",
-    "build": "echo build",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"
+    "build": "npm run build:commonjs",
+    "build:commonjs": "cross-env BABEL_ENV=node babel src --out-dir lib"
   },
   "husky": {
     "hooks": {

@@ -1,7 +1,7 @@
+/* eslint-disable import/no-unresolved */
 /* eslint require-atomic-updates: off */
-
-import { verifyGitLab } from './lib/verify';
-import { publishGitLab } from './lib/publish';
+const verifyGitLab = require('./lib/verify');
+const publishGitLab = require('./lib/publish');
 
 let verified;
 

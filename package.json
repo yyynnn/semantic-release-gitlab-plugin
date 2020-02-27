@@ -1,26 +1,27 @@
 {
   "name": "semantic-release-gitlab-plugin",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "MIT",
   "description": "semantic-release-gitlab-plugin",
   "repository": "github:yyynnn/semantic-release-gitlab-plugin",
   "keywords": [
-    "semantic-release",
+    "git",
     "gitlab",
-    "plugin"
+    "publish",
+    "release",
+    "semantic-release",
+    "version"
   ],
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "src/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "lib",
-    "es",
-    "src"
+    "index.js"
   ],
   "scripts": {
     "clean": "rimraf lib dist es",
     "prepare": "npm run clean && npm run build",
-    "build": "npm run build:commonjs && npm run build:es",
+    "build": "echo build",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"
   },
@@ -46,6 +47,21 @@
     "proseWrap": "always",
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "nyc": {
+    "include": [
+      "lib/**/*.js",
+      "index.js"
+    ],
+    "reporter": [
+      "json",
+      "text",
+      "html"
+    ],
+    "all": true
+  },
+  "peerDependencies": {
+    "semantic-release": ">=15.8.0 <18.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

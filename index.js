@@ -1,7 +1,7 @@
 /* eslint require-atomic-updates: off */
 
-import { verifyGitLab } from './helpers/verify';
-import { publishGitLab } from './helpers/publish';
+import { verifyGitLab } from './lib/verify';
+import { publishGitLab } from './lib/publish';
 
 let verified;
 
